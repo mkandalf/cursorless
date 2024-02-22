@@ -43,7 +43,8 @@
   (#not-parent-type? @_.domain argument_list)
 )
 
-;;! with parameters, modified, singleton_method/method
+;;! Attempt at handling sorbet signatures, not currently working
+;;! sorbet -- with parameters, modified, singleton_method/method
 ;; (_
 ;;   (call
 ;;     method: (identifier) @sigMethod
@@ -197,7 +198,7 @@
     (_)? @_.trailing.startOf
     "}" @map.end @collectionItem.iteration.end.startOf
     )
-  ) @map.domain @collectionItem.iteration.domain 
+  ) @map.domain @collectionItem.iteration.domain
   (#not-type? @collectionItem "comment")
   (#allow-multiple! @collectionItem)
   (#single-or-multi-line-delimiter! @collectionItem @map.domain ", " ",\n")
@@ -215,9 +216,11 @@
   (#single-or-multi-line-delimiter! @argumentOrParameter @dummy ", " ",\n")
 )
 
-(method_parameters
-  "(" @argumentOrParameter.iteration.start.endOf
-  ")" @argumentOrParameter.iteration.end.startOf
+(_
+  (method_parameters
+    "(" @argumentOrParameter.iteration.start.endOf
+    ")" @argumentOrParameter.iteration.end.startOf
+  )
 ) @argumentOrParameter.iteration.domain
 
 (
@@ -232,9 +235,11 @@
   (#single-or-multi-line-delimiter! @argumentOrParameter @dummy ", " ",\n")
 )
 
-(lambda_parameters
-  "(" @argumentOrParameter.iteration.start.endOf
-  ")" @argumentOrParameter.iteration.end.startOf
+(_
+  (lambda_parameters
+    "(" @argumentOrParameter.iteration.start.endOf
+    ")" @argumentOrParameter.iteration.end.startOf
+  )
 ) @argumentOrParameter.iteration.domain
 
 (
@@ -249,9 +254,11 @@
   (#single-or-multi-line-delimiter! @argumentOrParameter @dummy ", " ",\n")
 )
 
-(block_parameters
-  "|" @argumentOrParameter.iteration.start.endOf
-  "|" @argumentOrParameter.iteration.end.startOf
+(_
+  (block_parameters
+    "|" @argumentOrParameter.iteration.start.endOf
+    "|" @argumentOrParameter.iteration.end.startOf
+  )
 ) @argumentOrParameter.iteration.domain
 
 (
@@ -270,7 +277,9 @@
   (#single-or-multi-line-delimiter! @argumentOrParameter @dummy ", " ",\n")
 )
 
-(argument_list
-  "(" @argumentOrParameter.iteration.start.endOf
-  ")" @argumentOrParameter.iteration.end.startOf
+(_
+  (argument_list
+    "(" @argumentOrParameter.iteration.start.endOf
+    ")" @argumentOrParameter.iteration.end.startOf
+  )
 ) @argumentOrParameter.iteration.domain

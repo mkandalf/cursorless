@@ -189,7 +189,7 @@ export class VscodeTextEditorImpl implements EditableTextEditor {
   }
 
   public async extractVariable(_range?: Range): Promise<void> {
-    if (this.document.languageId === "python") {
+    if (this.document.languageId === "python" || this.document.languageId === "ruby") {
       // Workaround for https://github.com/microsoft/vscode-python/issues/20455
       await vscode.commands.executeCommand("editor.action.codeAction", {
         kind: "refactor.extract",
